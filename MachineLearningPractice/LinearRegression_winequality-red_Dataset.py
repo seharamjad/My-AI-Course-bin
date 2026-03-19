@@ -1,25 +1,9 @@
-#https://stackabuse.com/linear-regression-in-python-with-scikit-learn/
-#https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html
-""""
-
-If you had studied longer, would your overall scores get any better?
-
-One way of answering this question is by having data on how long you studied for and what scores you got. We can then try to see if there is a pattern in that data, and if in that pattern, when you add to the hours, it also ends up adding to the scores percentage.
-
-For instance, say you have an hour-score dataset, which contains entries such as 1.5h and 87.5% score. It could also contain 1.61h, 2.32h and 78%, 97% scores. The kind of data type that can have any intermediate value (or any level of 'granularity') is known as continuous data.
-
-Another scenario is that you have an hour-score dataset which contains letter-based grades instead of number-based grades, such as A, B or C. Grades are clear values that can be isolated, since you can't have an A.23, A+++++++++++ (and to infinity) or A * e^12. The kind of data type that cannot be partitioned or defined more granularly is known as discrete data.
-
-Based on the modality (form) of your data - to figure out what score you'd get based on your study time - you'll perform regression or classification.
-
-Regression is performed on continuous data, while classification is performed on discrete data. Regression can be anything from predicting someone's age, the house of a price, or value of any variable. Classification includes predicting what class something belongs to (such as whether a tumor is benign or malignant)."""
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
 #Let's read the CSV file and package it into a DataFrame:
-df = pd.read_csv("winequality-red.csv")
+df = pd.read_csv("winequality-red[1].csv")
 
 #Once the data is loaded in, let's take a quick peek at the first 5 values using the head() method:
 print(df.head())
@@ -31,29 +15,6 @@ print("df.shape:         " , df.shape)
 df.plot.scatter(x='Hours', y='Scores', title='Scatter Plot of hours and scores percentages');
 plt.show()
 
-""""The equation that describes any straight line is:
-$$
-y = a*x+b
-$$
-In this equation, y represents the score percentage, x represents the hours studied. b is where the line starts at the Y-axis, also called the Y-axis intercept and a defines if the line is going to be more towards the upper or lower part of the graph (the angle of the line), so it is called the slope of the line.
-
-By adjusting the slope and intercept of the line, we can move it in any direction. Thus - by figuring out the slope and intercept values, we can adjust a line to fit our data!
-"""
-
-""""
-https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html
-
-As the hours increase, so do the scores. There's a fairly high positive correlation here! Since the shape of the line the points are making appears to be straight 
-- we say that there's a positive linear correlation between the Hours and Scores variables. How correlated are they? The corr() method calculates and displays the 
- correlations between numerical variables in a DataFrame:"""
-
-print("df.corr():        " , df.corr())
-
-"""Pandas also ships with a great helper method for statistical summaries, and we can describe() the dataset to get an idea of the mean, maximum, minimum, etc. 
-values of our columns:
-
-"""
-
 print("df.describe():                    " , df.describe())
 
 
@@ -64,9 +25,6 @@ print("  df['Hours']   :    ", df['Hours']   )
 #The .reshape() method takes in two arguments: the first is the number of columns you want the dataframe to have, and the second is the number of rows you want the dataframe to have.
 y = df['Scores'].values.reshape(-1, 1)
 X = df['Hours'].values.reshape(-1, 1)
-  
-
-"""Note: df['Column_Name'] returns a pandas Series. Some libraries can work on a Series just as they would on a NumPy array, but not all libraries have this awareness. In some cases, you'll want to extract the underlying NumPy array that describes your data. This is easily done via the values field of the Series."""
 
 print("y :  " , y)
 print("X :   " , X)
@@ -80,12 +38,6 @@ print(df['Hours'].values.shape) # (25,)
 print(X.shape) # (25, 1)
 print(X)      # [[2.5] [5.1]  [3.2] ... ]
 
-"""
-The method randomly takes samples respecting the percentage we've defined, but respects the X-y pairs, lest the sampling would totally mix up the relationship. Some common train-test splits are 80/20 and 70/30.
-
-Since the sampling process is inherently random, we will always have different results when running the method. To be able to have the same results, or reproducible results, we can define a constant called SEED that has the value of the meaning of life (42):
-
-"""
 SEED = 42
 
 from sklearn.model_selection import train_test_split
@@ -114,10 +66,6 @@ print(regressor.intercept_)
 
 print(regressor.coef_)
 
-"""
-Making Predictions
-To avoid running calculations ourselves, we could write our own formula that calculates the value:
-"""
 def calc(slope, intercept, hours):
     return slope*hours+intercept
 
@@ -143,19 +91,7 @@ print(df_preds)
 #Though our model seems not to be very precise, the predicted percentages are close to the actual ones. Let's quantify the difference between the actual and predicted values to gain an objective view of how it's actually performing.
 
 
-"""
-https://scikit-learn.org/stable/api/sklearn.metrics.html
-
-sklearn.metrics
-Score functions, performance metrics, pairwise metrics and distance computations.
-
-Luckily, we don't have to do any of the metrics calculations manually. The Scikit-Learn package already comes with functions that can be used to find out the values 
-of these metrics for us. Let's find the values for these metrics using our test data. First, we will import the necessary modules for calculating the MAE and MSE errors. Respectively, the mean_absolute_error and mean_squared_error:
-"""
 from sklearn.metrics import mean_absolute_error, mean_squared_error,r2_score
-"""Now, we can calculate the MAE and MSE by passing the y_test (actual) and y_pred (predicted) to the methods. The RMSE can be calculated by taking the square root of 
-the MSE, to to that, we will use NumPy's sqrt() method:
-"""
 import numpy as np
 
 mae = mean_absolute_error(y_test, y_pred)
