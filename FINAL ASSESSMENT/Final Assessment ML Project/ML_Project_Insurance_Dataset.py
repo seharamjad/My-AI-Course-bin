@@ -1,7 +1,16 @@
+# Import libraries
+
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt 
 import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LinearRegression
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.metrics import mean_squared_error, r2_score
 
 #  load csv file
 df= pd.read_csv("FINAL ASSESSMENT\Final Assessment ML Project\InsurranceData.csv")
@@ -63,15 +72,6 @@ df['sex_encoded']= df['sex'].replace({'female': 1, 'male':0})
 df['region_encoded']= df['region'].replace({'female': 1, 'male':0})
 
 
-# Import libraries
-
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LinearRegression
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
-from sklearn.metrics import mean_squared_error, r2_score
 
 # Load your dataset (replace with your CSV path if needed)
 df = pd.read_csv('ection1_Solution/Insurance_Dataset/Section1-Question1-InsurranceData.csv')
