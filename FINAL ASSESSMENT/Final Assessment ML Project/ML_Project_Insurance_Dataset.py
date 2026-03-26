@@ -23,41 +23,41 @@ print("Print Describe Here:" , df.describe())
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-sns.histplot(df['Charges'], kde=True)
+sns.histplot(df['charges'], kde=True)
 plt.title("Distribution of Charges")
-plt.xlabel("Charges")
+plt.xlabel("charges")
 plt.ylabel("Frequency")
 plt.show()
 
-sns.displot(df['Charges'] , kde=True)
+sns.displot(df['charges'] , kde=True)
 plt.show()
 
-sns.boxplot(x=df['Charges'])
+sns.boxplot(x=df['charges'])
 plt.title("BoxPlot of Charges")
 plt.show()
 
-sns.scatterplot(x='age', y='Charges', data=df)
+sns.scatterplot(x='age', y='charges', data=df)
 plt.title("Age vs Charges")
 plt.show()
 
-sns.scatterplot(x='bmi', y='Charges', data=df)
+sns.scatterplot(x='bmi', y='charges', data=df)
 plt.title("Age vs Charges")
 plt.show()
- 
 
-sns.boxplot(x='smoker' , y='Charges' , data=df)
+
+sns.boxplot(x='smoker' , y='charges' , data=df)
 plt.title("smoker vs charges")
 plt.show()
 
-sns.boxplot(x='sex' , y='Charges' , data=df)
+sns.boxplot(x='sex' , y='charges' , data=df)
 plt.title("sex vs charges")
 plt.show()
 
-sns.boxplot(x='region' , y='Charges' , data=df)
+sns.boxplot(x='region' , y='charges' , data=df)
 plt.title("region vs charges")
 plt.show()
 
-sns.barplot(x='children' , y='Charges' , data=df)
+sns.barplot(x='children' , y='charges' , data=df)
 plt.title("children vs charges")
 plt.show()
 
@@ -74,7 +74,7 @@ df['region_encoded']= df['region'].replace({'female': 1, 'male':0})
 
 
 # Load your dataset (replace with your CSV path if needed)
-df = pd.read_csv('ection1_Solution/Insurance_Dataset/Section1-Question1-InsurranceData.csv')
+df = pd.read_csv('FINAL ASSESSMENT\Final Assessment ML Project\InsurranceData.csv')
 
 # Features and target
 X = df.drop('charges', axis=1)
@@ -111,6 +111,7 @@ models = {
 for name, model in models.items():
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-    rmse = mean_squared_error(y_test, y_pred, squared=False)
+    # rmse = mean_squared_error(y_test, y_pred, squared=False)
+    rmse = np.sqrt(mean_squared_error(y_test, y_pred))
     r2 = r2_score(y_test, y_pred)
     print(f"{name} -> RMSE: {rmse:.2f}, R2 Score: {r2:.2f}")
