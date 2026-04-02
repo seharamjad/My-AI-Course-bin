@@ -7,8 +7,8 @@ using many variables instead of one, and this is also a much more common scenari
 
 For instance, if we want to predict the gas consumption in US states, it would be limiting to use only one variable, for instance, gas taxes to do it, since more than 
 just gas taxes affects consumption. There are more things involved in the gas consumption than only gas taxes, such as the per capita income of the people in a certain
- area, the extension of paved highways, the proportion of the population that has a driver's license, and many other factors. Some factors affect the consumption more 
- than others - and here's where correlation coefficients really help!"""
+area, the extension of paved highways, the proportion of the population that has a driver's license, and many other factors. Some factors affect the consumption more 
+than others - and here's where correlation coefficients really help!"""
 
 # https://www.kaggle.com/datasets/harinir/petrol-consumption
 
@@ -61,7 +61,7 @@ We can use double brackets [[ ]] to select them from the dataframe:"""
 
 y = df['Petrol_Consumption']
 X = df[['Average_income', 'Paved_Highways',
-       'Population_Driver_licence(%)', 'Petrol_tax']]
+        'Population_Driver_licence(%)', 'Petrol_tax']]
 
 SEED = 200
 #After setting our X and y sets, we can divide our data into train and test sets. We will be using the same seed and 20% of our data for training:
@@ -92,16 +92,16 @@ print("regressor.coef_ " , regressor.coef_)
 model_coefficients = regressor.coef_
 
 coefficients_df = pd.DataFrame(data = model_coefficients, 
-                              index = feature_names, 
-                              columns = ['Coefficient value'])
+                            index = feature_names, 
+                            columns = ['Coefficient value'])
 print(coefficients_df)"""
 
 feature_names = X.columns
 model_coefficients = regressor.coef_
 
 coefficients_df = pd.DataFrame(data = model_coefficients, 
-                              index = feature_names, 
-                              columns = ['Coefficient value'])
+                                index = feature_names, 
+                                columns = ['Coefficient value'])
 print(coefficients_df)
 
 

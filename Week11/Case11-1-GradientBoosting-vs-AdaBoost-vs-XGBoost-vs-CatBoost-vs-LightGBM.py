@@ -12,10 +12,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
 X, y = make_regression(n_samples=100,
-                       n_features=10,
-                       n_informative=5,
-                       n_targets=1,
-                       random_state=42)
+                        n_features=10,
+                        n_informative=5,
+                        n_targets=1,
+                        random_state=42)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 gbr = GradientBoostingRegressor()
 gbr.fit(X_train, y_train)
@@ -91,13 +91,13 @@ fig, ax = plt.subplots(figsize=(11, 5))
 ax = sns.lineplot(x=y_test, y=y_pred1,
                   label='GradientBoosting')
 ax1 = sns.lineplot(x=y_test, y=y_pred2,
-                   label='XGBoost')
+                  label='XGBoost')
 ax2 = sns.lineplot(x=y_test, y=y_pred3,
-                   label='AdaBoost')
+                  label='AdaBoost')
 ax3 = sns.lineplot(x=y_test, y=y_pred4,
-                   label='CatBoost')
+                  label='CatBoost')
 ax4 = sns.lineplot(x=y_test, y=y_pred5,
-                   label='LightGBM')
+                  label='LightGBM')
 
 ax.set_xlabel('y_test', color='g')
 ax.set_ylabel('y_pred', color='g')

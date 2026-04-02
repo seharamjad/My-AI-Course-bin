@@ -95,9 +95,9 @@ Split arrays or matrices into random train and test subsets.
 Quick utility that wraps input validation, next(ShuffleSplit().split(X, y)), and application to input data into a single call for splitting (and optionally subsampling) data into a one-liner."""
 # Split data into train and test
 X_train_scaled, X_test_scaled, y_train, y_test = train_test_split(X_scaled,
-                                                                  y,
-                                                             train_size=.7,
-                                                           random_state=25)
+                                                    y,
+                                                    train_size=.7,
+                                                        random_state=25)
 
 # Check the splits are correct
 print(f"Train size: {round(len(X_train_scaled) / len(X) * 100)}% \n\
